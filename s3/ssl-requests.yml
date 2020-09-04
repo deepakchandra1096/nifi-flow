@@ -1,0 +1,35 @@
+policies:
+  - name: force-s3-https-on-existing-buckets
+    resource: s3
+    actions:
+       - type: set-statements
+         statements:
+           - Sid: "DenyHttp"
+             Effect: "Deny"
+             Action: "s3:GetObject"
+             Principal:
+               AWS: "*"
+             Resource: "arn:aws:s3:::{bucket_name}/*"
+             Condition:
+               Bool:
+                 "aws:SecureTransport": false
+  - name: force-s3-https-on-new-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    actions:
+       - type: set-statements
+         statements:
+           - Sid: "DenyHttp"
+             Effect: "Deny"
+             Action: "s3:GetObject"
+             Principal:
+               AWS: "*"
+             Resource: "arn:aws:s3:::{bucket_name}/*"
+             Condition:
+               Bool:
+                 "aws:SecureTransport": false

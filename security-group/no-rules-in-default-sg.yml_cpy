@@ -1,0 +1,23 @@
+policies:
+  - name: DenyAnyInboundTrafficInDefaultSG
+    resource: security-group
+    filters:
+       - and:
+          - type: value
+            key: GroupName
+            value: "default"
+          - type: value
+            key: IpPermissions
+            value: []
+            op: ne
+  - name: DenyOutboundTrafficInDefaultSG
+    resource: security-group
+    filters:
+       - and:
+          - type: value
+            key: GroupName
+            value: "default"
+          - type: value
+            key: IpPermissionsEgress
+            value: []
+            op: ne

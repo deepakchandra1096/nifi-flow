@@ -1,0 +1,13 @@
+policies:
+  - name: account-cloudtrail-enabled
+    resource: account
+    region: ap-southeast-1
+    filters:
+      - type: check-cloudtrail
+        global-events: true
+        multi-region: true
+        running: true
+    actions:
+      - type: enable-cloudtrail
+        trail: bloom-cloudtrail
+        bucket: bloom-staging-security-venture-cloudtrail-test

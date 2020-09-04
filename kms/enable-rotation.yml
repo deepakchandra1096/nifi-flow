@@ -1,0 +1,17 @@
+policies:
+  - name: enable-cmk-rotation
+    resource: kms-key
+    mode:
+      type: periodic
+      role: VentureAdminRole
+      schedule: "rate(4 hours)"
+    filters:
+      - type: key-rotation-status
+        key: KeyRotationEnabled
+        value: False
+      - type: value
+        key: KeyManager
+        value: "CUSTOMER"
+    actions:
+      - type: set-rotation
+        state: True

@@ -1,0 +1,55 @@
+policies:
+  - name: DenyAnyInboundTrafficInDefaultSG
+    resource: security-group
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      events:
+        - source: ec2.amazonaws.com
+          event: AuthorizeSecurityGroupIngress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: AuthorizeSecurityGroupEgress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: RevokeSecurityGroupEgress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: RevokeSecurityGroupIngress
+          ids: "requestParameters.groupId"
+    filters:
+       - and:
+          - type: value
+            key: GroupName
+            value: "default"
+          - type: value
+            key: IpPermissions
+            value: []
+            op: ne
+  - name: DenyOutboundTrafficInDefaultSG
+    resource: security-group
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      events:
+        - source: ec2.amazonaws.com
+          event: AuthorizeSecurityGroupIngress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: AuthorizeSecurityGroupEgress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: RevokeSecurityGroupEgress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: RevokeSecurityGroupIngress
+          ids: "requestParameters.groupId"
+    filters:
+       - and:
+          - type: value
+            key: GroupName
+            value: "default"
+          - type: value
+            key: IpPermissionsEgress
+            value: []
+            op: ne

@@ -1,0 +1,12 @@
+policies:
+  - name: cloudtrail-set-log
+    resource: aws.cloudtrail
+    filters:
+      - or:
+          - KmsKeyId: empty
+          - LogFileValidationEnabled: false
+    actions:
+      - type: update-trail
+        attributes:
+          KmsKeyId: arn:aws:kms:ap-southeast-1:176409083080:key/b4d7da61-32c3-45ad-9e6c-67e61ffa7b88
+          EnableLogFileValidation: true

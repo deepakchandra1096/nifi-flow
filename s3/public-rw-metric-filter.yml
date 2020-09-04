@@ -1,0 +1,17 @@
+policies:
+    - name: public-s3-buckets-with-public-acls-enabled
+      resource: s3
+      filters:
+        - type: global-grants
+    - name: s3-bucket-policy-with-entire-principal-wildcard
+      resource: s3
+      filters:
+        - type: has-statement
+          statements:
+            - Effect: Allow
+              Principal: "*"
+    - name: s3-bucket-policy-with-every-aws-account
+      resource: s3
+      filters:
+        - type: cross-account
+          everyone_only: true

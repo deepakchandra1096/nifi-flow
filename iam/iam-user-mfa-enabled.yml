@@ -1,0 +1,12 @@
+policies:
+    - name: account-with-virtual-mfa
+      resource: account
+      mode:
+           type: periodic
+           schedule: "rate(4 hours)"
+           role: VentureAdminRole
+      description: |
+        Retrieve list of IAM users with MFA enabled.
+      filters:
+        - type: has-virtual-mfa
+          value: true

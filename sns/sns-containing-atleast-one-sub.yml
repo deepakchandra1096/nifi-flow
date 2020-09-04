@@ -1,0 +1,19 @@
+policies:
+  - name: CheckMinOneSubscriptionInTopic
+    resource: sns
+    filters:
+      - and:
+        - type: value
+          key: SubscriptionsConfirmed
+          value: "0"
+          op: eq
+        - type: value
+          key: SubscriptionsPending
+          value: "0"
+          op: eq
+        - type: value
+          key: SubscriptionsDeleted
+          value: "0"
+          op: eq
+    actions:
+      - type: delete

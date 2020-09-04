@@ -1,0 +1,29 @@
+policies:
+ - name: terminate-instances
+   resource: ec2
+   mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - RunInstances
+   filters:
+     - type: value
+       key: State.Name
+       op: in
+       value: [running, pending]
+     - type: ebs
+       key: Encrypted
+       value: false
+   actions:
+     - terminate
+ - name: check-for-running-instances
+   resource: ec2
+   filters:
+     - and:
+        - "State.Name": running
+        - type: ebs
+          key: Encrypted
+          value: false
+   actions:
+      - terminate

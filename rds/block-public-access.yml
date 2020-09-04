@@ -1,0 +1,23 @@
+policies:
+  - name: modify-public-rds
+    description: |
+      Modify all publicly available RDS upon creation
+    resource: rds
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateDBInstance
+    filters:
+          - PubliclyAccessible: true
+    actions:
+          - type: set-public-access
+            state: false
+  - name: check-for-running-instances
+    resource: rds
+    filters:
+           - PubliclyAccessible: true
+    actions:
+           - type: set-public-access
+             state: false

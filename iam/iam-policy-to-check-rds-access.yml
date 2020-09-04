@@ -1,0 +1,295 @@
+policies:
+  - name: iam-role-check-create-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Create*
+  - name: iam-role-check-modify-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Modify*
+  - name: iam-role-check-update-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Update*
+  - name: iam-role-check-delete-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Delete*
+  - name: iam-role-check-full-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:*
+  - name: iam-role-check-reboot-or-stop-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Reboot*
+  - name: iam-role-check-stop-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Stop*
+  - name: iam-role-check-start-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Start*
+  - name: iam-role-check-add-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Add*
+  - name: iam-role-check-apply-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Apply*
+  - name: iam-role-check-backtrack-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Backtrack*
+  - name: iam-role-check-copy-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Copy*
+  - name: iam-role-check-cancel-export-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Cancel*
+  - name: iam-role-check-deregister-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Deregister*
+  - name: iam-role-check-failover-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:FailOver*
+  - name: iam-role-check-register-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Register*
+  - name: iam-role-check-promote-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Promote*
+  - name: iam-role-check-purchase-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Purchase*
+  - name: iam-role-check-remove-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Remove*
+  - name: iam-role-check-reset-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Reset*
+  - name: iam-role-check-restore-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Restore*
+  - name: iam-user-check-create-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Create*
+  - name: iam-user-check-modify-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Modify*
+  - name: iam-user-check-update-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Update*
+  - name: iam-user-check-delete-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Delete*
+  - name: iam-user-check-full-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:*
+  - name: iam-user-check-reboot-or-stop-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Reboot*
+  - name: iam-user-check-stop-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Stop*
+  - name: iam-user-check-start-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Start*
+  - name: iam-user-check-add-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Add*
+  - name: iam-user-check-apply-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Apply*
+  - name: iam-user-check-backtrack-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Backtrack*
+  - name: iam-user-check-copy-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Copy*
+  - name: iam-user-check-cancel-export-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Cancel*
+  - name: iam-user-check-deregister-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Deregister*
+  - name: iam-user-check-failover-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:FailOver*
+  - name: iam-user-check-register-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Register*
+  - name: iam-user-check-promote-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Promote*
+  - name: iam-user-check-purchase-rds-permissions
+    resource: iam-role
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Purchase*
+  - name: iam-user-check-remove-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Remove*
+  - name: iam-user-check-reset-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Reset*
+  - name: iam-user-check-restore-rds-permissions
+    resource: iam-user
+    filters:
+      - type: check-permissions
+        match: allowed
+        actions:
+         - rds:Restore*

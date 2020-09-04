@@ -1,0 +1,33 @@
+policies:
+  - name: add-bucket-versioning
+    resource: s3
+    filters:
+      - or:
+        - type: value
+          key: Versioning.Status
+          value: Suspended
+        - type: value
+          key: Versioning.Status
+          value: absent
+    actions:
+       - type: toggle-versioning
+         enabled: true
+  - name: s3-enable-versioning
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    filters:
+      - or:
+        - type: value
+          key: Versioning.Status
+          value: Suspended
+        - type: value
+          key: Versioning.Status
+          value: absent
+    actions:
+       - type: toggle-versioning
+         enabled: true

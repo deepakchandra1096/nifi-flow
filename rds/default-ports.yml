@@ -1,0 +1,25 @@
+policies:
+  - name: filter-new-default-ports-rds
+    description: |
+      Filter all newly created RDS upon creation which has default ports
+    resource: rds
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateDBInstance
+    filters:
+      - type: value
+        key: Endpoint.Port
+        op: in
+        value: [3306,5432,1433,1521]
+  - name: modify-existing-unencrypted-rds
+    description: |
+      Filter all existing  RDS upon creation which has default ports
+    resource: rds
+    filters:
+      - type: value
+        key: Endpoint.Port
+        op: in
+        value: [3306,5432,1433,1521]

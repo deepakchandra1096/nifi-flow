@@ -1,0 +1,11 @@
+policies:
+  - name: no-key-pair-persent-in-AWS-account
+    resource: aws.key-pair
+    mode:
+      type: periodic
+      role: VentureAdminRole
+      schedule: "rate(4 hours)"
+    filters:
+      - unused
+    actions:
+      - delete

@@ -1,0 +1,10 @@
+policies:
+  - name: iam-user-with-inline-policy
+    resource: iam-user
+    mode:
+         type: periodic
+         schedule: "rate(4 hours)"
+         role: VentureAdminRole
+    filters:
+      - type: has-inline-policy
+        value: True

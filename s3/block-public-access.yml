@@ -1,0 +1,37 @@
+policies:
+  - name: s3-public-acl-block-off-for-existing-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    filters:
+      - type: check-public-block
+        BlockPublicPolicy: false
+        BlockPublicAcls: false
+        RestrictPublicBuckets: false
+    actions:
+      - type: set-public-block
+        BlockPublicPolicy: true
+        BlockPublicAcls: true
+        RestrictPublicBuckets: true
+  - name: s3-public-acl-block-off-for-new-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    filters:
+      - type: check-public-block
+        BlockPublicPolicy: false
+        BlockPublicAcls: false
+        RestrictPublicBuckets: false
+    actions:
+      - type: set-public-block
+        BlockPublicPolicy: true
+        BlockPublicAcls: true
+        RestrictPublicBuckets: true

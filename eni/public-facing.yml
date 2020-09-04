@@ -1,0 +1,40 @@
+policies:
+- name: public-associated-enisi-ip4
+  resource: aws.eni
+  mode:
+    type: periodic
+    role: VentureAdminRole
+    schedule: "rate(4 hours)"
+  filters:
+      - type: security-group
+        key: IpPermissions[].IpRanges[].CidrIp
+        value_type: swap
+        op: in
+        value: "0.0.0.0/0"
+      - type: value
+        key: Association.PublicIp
+        value: present
+      - type: value
+        op: not-equal
+        key: Association.IpOwnerId
+        value: "amazon-elb"
+
+- name: public-associated-enis-ip6
+  resource: aws.eni
+  mode:
+    type: periodic
+    role: VentureAdminRole
+    schedule: "rate(4 hours)"
+  filters:
+      - type: security-group
+        key: IpPermissions[].Ipv6Ranges[].CidrIpv6
+        value_type: swap
+        op: in
+        value: "::/0"
+      - type: value
+        key: Association.PublicIp
+        value: present
+      - type: value
+        op: not-equal
+        key: Association.IpOwnerId
+        value: "amazon-elb"

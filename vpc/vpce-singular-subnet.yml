@@ -1,0 +1,15 @@
+policies:
+  - name: vpc-endpoint-singular-SubnetId
+    resource: vpc-endpoint
+    mode:
+      type: periodic
+      role: VentureAdminRole
+      schedule: "rate(4 hours)"
+    filters:
+      - and:
+        - type: target-all-resources
+        - type: value
+          key: SubnetIds[]
+          value_type: size
+          value: 0
+          op: gt

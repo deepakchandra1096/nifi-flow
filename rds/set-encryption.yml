@@ -1,0 +1,19 @@
+policies:
+  - name: modify-new-un-encrypted-rds-on-creation
+    description: |
+      Modify all newly created un-encrypted RDS upon creation
+    resource: rds
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateDBInstance
+    filters:
+      - StorageEncrypted: false
+  - name: modify-existing-unencrypted-rds-on-creation
+    description: |
+      Modify all existing un-encrypted RDS upon creation
+    resource: rds
+    filters:
+      - StorageEncrypted: false

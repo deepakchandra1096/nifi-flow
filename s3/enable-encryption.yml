@@ -1,0 +1,23 @@
+policies:
+  - name: add-bucket-encryption-if-missing-for-existing-buckets
+    resource: s3
+    filters:
+      - type: bucket-encryption
+        state: false
+    actions:
+      - type: set-bucket-encryption
+        enabled: True
+  - name: add-bucket-encryption-if-missing-for-new-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    filters:
+      - type: bucket-encryption
+        state: false
+    actions:
+      - type: set-bucket-encryption
+        enabled: True

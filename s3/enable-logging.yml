@@ -1,0 +1,17 @@
+policies:
+  - name: add-bucket-logging-if-missing-for-existing-buckets
+    resource: s3
+    filters:
+      - type: bucket-logging
+        op: disabled
+  - name: add-bucket-logging-if-missing-for-new-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    filters:
+      - type: bucket-logging
+        op: disabled

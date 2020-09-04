@@ -1,0 +1,14 @@
+policies:
+  - name: vpc-enable-flow-logs
+    resource: vpc
+    mode:
+            type: periodic
+            schedule: "rate(4 hours)"
+            role: VentureAdminRole
+    filters:
+      - type: flow-logs
+        enabled: false
+    # actions:
+    #   - type: set-flow-log
+    #     DeliverLogsPermissionArn: arn:aws:iam:999957532773::role/venture-devops-ou-admin 
+    #     LogGroupName: /custodian/vpc/flowlogs/

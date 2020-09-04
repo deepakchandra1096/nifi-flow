@@ -1,0 +1,19 @@
+policies:
+  - name: modify-new-un-encrypted-rds
+    description: |
+      Filter all newly created un-encrypted RDS upon creation
+    resource: rds-snapshot
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateDBInstance
+    filters:
+      - Encr: false
+  - name: modify-existing-unencrypted-rds
+    description: |
+      Filter all existing un-encrypted RDS snapshots
+    resource: rds
+    filters:
+      - StorageEncrypted: false

@@ -1,0 +1,18 @@
+policies:
+  - name: iam-user-password-enabled-check
+    resource: iam-user
+    mode:
+         type: periodic
+         schedule: "rate(4 hours)"
+         role: VentureAdminRole
+    filters:
+         - and:
+            - type: credential
+              key: password_enabled
+              value: present
+            - type: credential
+              key: password_enabled
+              value: true
+    actions:
+        - type: remove-keys
+          disable: true

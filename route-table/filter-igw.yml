@@ -1,0 +1,11 @@
+policies:
+  - name: filter-internet-gateway
+    resource: route-table
+    mode:
+      type: periodic
+      role: VentureAdminRole
+      schedule: "rate(4 hours)"
+    filters:
+           - type: value
+             key: Routes[].GatewayId
+             value: present

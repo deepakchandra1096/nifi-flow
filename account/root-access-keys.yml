@@ -1,0 +1,13 @@
+policies:
+  - name: root-keys
+    resource: account
+    mode:
+      type: periodic
+      schedule: "rate(4 hours)"
+      role: VentureAdminRole
+    filters:
+      - type: iam-summary
+        key: AccountAccessKeysPresent
+        value: true
+        op: eq
+        value_type: swap

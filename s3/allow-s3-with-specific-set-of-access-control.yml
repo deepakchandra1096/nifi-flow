@@ -1,0 +1,31 @@
+# From Specific Source Vpc Endpoint & VPC; (AND) - wont work for specific, generic will work: - check
+# Has a specific IAM Role; (AND) - wont work for specific, generic will work: - check
+# Has Encryption Turned On; (AND) - check
+# Secure Transport (SSL); (AND) - check
+# MFA Deleted Required; (AND) - wont-work
+# Versioning Enabled - check
+
+policies:
+  - name: allow-s3-with-specific-set-of-access-control
+    resource: s3
+    filters:
+      - and:
+        - type: value
+          key: Versioning.Status
+          value: Enabled
+          op: ne
+        - type: bucket-encryption
+          state: False
+        - not:
+          - type: value
+            key: Policy
+            value: '.*Condition.*.aws:SourceVpce*.'
+            op: regex
+          - type: value
+            key: Policy
+            value: '.*Principal.*.AWS.*.role/*.'
+            op: regex
+          - type: value
+            key: Policy
+            value: '.*Condition.*.Bool.*.aws:SecureTransport*.'
+            op: regex

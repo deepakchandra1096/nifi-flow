@@ -1,0 +1,11 @@
+policies:
+  - name: iam-active-key-no-login
+    resource: iam-user
+    mode:
+      type: periodic
+      schedule: "rate(4 hours)"
+      role: VentureAdminRole
+    actions:
+     - type: remove-keys
+       disable: true
+       age: 90

@@ -1,0 +1,17 @@
+policies:
+  - name: root-user-login-detected
+    resource: account
+    description: |
+      Filters AWS root user console logins
+    mode:
+       type: cloudtrail
+       role: VentureAdminRole
+       packages: [boto3, botocore, urllib3]
+       events:
+          - ConsoleLogin
+    filters:
+       - type: event
+         key: "detail.userIdentity.type"
+         value_type: swap
+         op: in
+         value: Root

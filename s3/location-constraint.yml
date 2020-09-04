@@ -1,0 +1,39 @@
+policies:
+  - name: s3-location-constraint-for-existing-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    filters:
+      - type: value
+        key: Location.LocationConstraint
+        value: present
+      - type: value
+        key: Location.LocationConstraint
+        value: "ap-southeast-1"
+        op: ne
+    actions:
+      - type: delete
+        remove-contents: true
+  - name: s3-location-constraint-for-new-buckets
+    resource: s3
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      packages: [boto3, botocore, urllib3]
+      events:
+        - CreateBucket
+    filters:
+      - type: value
+        key: Location.LocationConstraint
+        value: present
+      - type: value
+        key: Location.LocationConstraint
+        value: "ap-southeast-1"
+        op: ne
+    actions:
+      - type: delete
+        remove-contents: true

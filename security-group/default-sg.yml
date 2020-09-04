@@ -1,0 +1,23 @@
+policies:
+  - name: security-group-default-vpc
+    resource: security-group
+    mode:
+      type: cloudtrail
+      role: VentureAdminRole
+      events:
+        - source: ec2.amazonaws.com
+          event: AuthorizeSecurityGroupIngress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: AuthorizeSecurityGroupEgress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: RevokeSecurityGroupEgress
+          ids: "requestParameters.groupId"
+        - source: ec2.amazonaws.com
+          event: RevokeSecurityGroupIngress
+          ids: "requestParameters.groupId"
+    filters:
+      - default-vpc
+    actions:
+      - type: remove-permissions
