@@ -1,6 +1,0 @@
-flows:
-  ccf8ad2f-e6aa-4de0-9f3c-e77034f17c02: {ver: 1, file: kss.snapshot, comments: '',
-    author: admin, created: 1593076836042, flowName: kss, flowDesc: this is just for
-      demo -devops team}
-layoutVer: 1
-bucketId: 41ec2dd1-6476-4fe3-b560-a698a47f2f71

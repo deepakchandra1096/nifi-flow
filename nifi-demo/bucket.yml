@@ -1,6 +1,0 @@
-flows:
-  8341d0f2-4888-45bf-96b6-7901f4c8e412: {ver: 1, file: nifi-demo.snapshot, comments: '',
-    author: admin, created: 1593071466489, flowName: nifi-demo, flowDesc: kamal is
-      the boss}
-layoutVer: 1
-bucketId: fb0a7396-c323-482d-b732-5823d5815c83
