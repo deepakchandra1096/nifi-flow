@@ -1,6 +1,0 @@
-flows:
-  a9056b74-eda9-4338-8ba7-c915bb22b255: {ver: 1, file: deepak-nifi-test.snapshot,
-    comments: v1, author: admin, created: 1590440723616, flowName: deepak-nifi-test,
-    flowDesc: ''}
-layoutVer: 1
-bucketId: 11459bde-b607-4092-8c67-924ad1821ed1
